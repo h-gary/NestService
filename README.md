@@ -1,2 +1,2 @@
-# NestService
+#nest-service
 nest based service
