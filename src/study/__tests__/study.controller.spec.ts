@@ -1,5 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { StudyService } from '..';
 import { StudyController } from '../study.controller';
+
+class MockStudyService implements StudyService {
+  start: (course: string) => false;
+  pause: (course: string) => false;
+}
 
 describe('StudyController', () => {
   let controller: StudyController;
@@ -7,6 +13,14 @@ describe('StudyController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [StudyController],
+      providers: [
+        MockStudyService,
+        {
+          provide: 'studyService',
+          useFactory: (...study: StudyService[]) => study,
+          inject: [MockStudyService],
+        },
+      ],
     }).compile();
 
     controller = module.get<StudyController>(StudyController);
@@ -14,5 +28,10 @@ describe('StudyController', () => {
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('start return false', async () => {
+    const result = await controller.start();
+    expect(result).toBeFalsy;
   });
 });
