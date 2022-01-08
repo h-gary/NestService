@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { appointmentController } from './appointment.controller';
 import { appointmentService } from './appointment.service';
-import { StudyModule } from './study/study.module';
-import { Study } from './study';
+import { StudyModule, StudyService } from '../study';
 
 @Module({
-  imports: [StudyModule],
+  imports: [StudyModule], //avoid circular dependencies
   controllers: [appointmentController],
-  providers: [appointmentService, Study],
+  providers: [appointmentService, StudyService],
 })
 export class appointmentModule {}
