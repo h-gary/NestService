@@ -1,4 +1,4 @@
-import { StudyService } from '@api/study/services';
+import { StudyService } from './services';
 import { Module } from '@nestjs/common';
 import { HomeworkController } from './homework.Controller';
 import { StudyController } from './study.controller';
@@ -7,4 +7,4 @@ import { StudyController } from './study.controller';
   controllers: [HomeworkController],
   providers: [StudyService],
 })
-export class Study1Module {}
+export class StudyModule {}
