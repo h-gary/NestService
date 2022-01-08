@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestappointmentlication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { appointmentModule } from './../src/appointment/appointment.module';
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
+describe('appointmentController (e2e)', () => {
+  let appointment: INestappointmentlication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [appointmentModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
+    appointment = moduleFixture.createNestappointmentlication();
+    await appointment.init();
   });
 
-  it('App/ (GET)', () => {
+  it('appointment/ (GET)', () => {
     // eslint-disable-next-line prettier/prettier
-    return request(app.getHttpServer()).get('/').expect(200).expect('Hello World!!!!');
+    return request(appointment.getHttpServer()).get('/').expect(200).expect('Hello World!!!!');
   });
 });
