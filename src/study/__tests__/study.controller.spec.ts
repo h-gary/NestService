@@ -3,7 +3,9 @@ import { StudyService } from '..';
 import { StudyController } from '../study.controller';
 
 class MockStudyService implements StudyService {
-  start: (course: string) => false;
+  start(course: string) {
+    return true;
+  }
   pause: (course: string) => false;
 }
 
@@ -30,8 +32,7 @@ describe('StudyController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('start return false', async () => {
-    const result = await controller.start();
-    expect(result).toBeFalsy;
+  it('start called', async () => {
+    await controller.start();
   });
 });
