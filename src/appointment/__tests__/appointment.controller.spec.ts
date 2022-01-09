@@ -15,7 +15,7 @@ describe('appointmentController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(controller.getHello()).toBe('Hello World!!!!');
+      expect(controller.getAppointmentById('hello')).toBe('hello');
     });
   });
 });

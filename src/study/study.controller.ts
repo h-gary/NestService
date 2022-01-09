@@ -1,8 +1,8 @@
 import { Controller, Get, Inject, Post } from '@nestjs/common';
-import { ApiExcludeEndpoint } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
 
 import { StudyService } from '.';
-
+//@ApiTags('study')
 @Controller('study')
 //@UseGuards(JwtAuth)
 export class StudyController {
@@ -10,7 +10,7 @@ export class StudyController {
 
   //@UseGuards(JwtAuth)
   @ApiExcludeEndpoint() //exclude from swagger endpoint
-  @Post()
+  @Post('start')
   start(): Promise<void> {
     //use service base on request.
     return;
