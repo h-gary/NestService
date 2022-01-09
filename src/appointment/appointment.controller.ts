@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { query } from 'express';
 import { appointmentService } from './appointment.service';
-import { NewAppointmentRequestModel } from './models/requests/newAppointmentRequestModel';
+import { NewAppointmentRequestModel } from './share/models/requests/newAppointmentRequestModel';
 import { IdValidation } from './share/pipes/idValidation';
 import { NewAppointmentValidation } from './share/pipes/newAppointmentValidation';
 
