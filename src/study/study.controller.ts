@@ -1,19 +1,29 @@
-import { Controller, Get, Inject, Post } from '@nestjs/common';
-import { ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
+import { BadRequestException, Controller, Get, Inject, Post } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
 
 import { StudyService } from '.';
 //@ApiTags('study')
 @Controller('study')
 //@UseGuards(JwtAuth)
 export class StudyController {
-  constructor(@Inject('studyService') private study: StudyService[]) {}
+  private readonly studyService: StudyService;
+  constructor(@Inject('studyService') private studyservices: StudyService[], @Inject(REQUEST) private request) {
+    if (this.request.headers['class'] === 'virtual') {
+      this.studyService = this.studyservices[0];
+    } else if (this.request.headers['class'] === 'inperson') {
+      this.studyService = this.studyservices[1];
+    } else {
+      throw new BadRequestException('no class found in header');
+    }
+  }
 
   //@UseGuards(JwtAuth)
-  @ApiExcludeEndpoint() //exclude from swagger endpoint
+  //@ApiExcludeEndpoint() //exclude from swagger endpoint
   @Post('start')
-  start(): Promise<void> {
+  start(): string {
     //use service base on request.
-    return;
+    const res = this.studyService.start('');
+    return res;
   }
 
   @Get('hello')
@@ -21,8 +31,8 @@ export class StudyController {
     return 'hello';
   }
 
-  @Get('TestSwagger')
-  testSwagger(): string {
-    return 'I see Swagger';
-  }
+  // @Get('testSwagger')
+  // testSwagger(): string {
+  //   return 'I see Swagger';
+  // }
 }

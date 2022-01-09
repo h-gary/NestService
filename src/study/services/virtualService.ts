@@ -3,8 +3,8 @@ import { StudyService } from '.';
 
 @Injectable()
 export class VirtualStudyService implements StudyService {
-  start(course: string): boolean {
-    return true;
+  start(course: string): string {
+    return 'virtual';
   }
   pause: (course: string) => true;
 }
