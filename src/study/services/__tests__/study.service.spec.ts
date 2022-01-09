@@ -3,7 +3,7 @@ import { StudyService } from '..';
 
 class MockStudyService implements StudyService {
   start(course: string) {
-    return course === 'cs';
+    return 'computer';
   }
 
   pause: (course: string) => true;
@@ -24,12 +24,8 @@ describe('StudyService', () => {
     expect(service).toBeDefined();
   });
 
-  it('start retun false', () => {
+  it('start retun class', () => {
     const res = service.start('computer');
-    expect(res).toEqual(false);
-  });
-  it('start retun true', () => {
-    const res = service.start('cs');
-    expect(res).toEqual(true);
+    expect(res).toEqual('computer');
   });
 });
