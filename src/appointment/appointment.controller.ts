@@ -2,8 +2,8 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { query } from 'express';
 import { appointmentService } from './appointment.service';
 import { NewAppointmentRequestModel } from './models/requests/newAppointmentRequestModel';
-import { IdValidation } from './pipes/idValidation';
-import { NewAppointmentValidation } from './pipes/newAppointmentValidation';
+import { IdValidation } from './share/pipes/idValidation';
+import { NewAppointmentValidation } from './share/pipes/newAppointmentValidation';
 
 @Controller('appointment')
 export class appointmentController {

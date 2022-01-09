@@ -1,5 +1,5 @@
 import { BadRequestException, PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
-import { NewAppointmentRequestModel } from '../models/requests/newAppointmentRequestModel';
+import { NewAppointmentRequestModel } from '../../models/requests/newAppointmentRequestModel';
 
 @Injectable()
 export class NewAppointmentValidation implements PipeTransform<NewAppointmentRequestModel> {
